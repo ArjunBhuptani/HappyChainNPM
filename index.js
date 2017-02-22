@@ -1,46 +1,37 @@
-var http = require('http');
+var xhrHandler = require('./xhr');
 
 function initializeApp(apiKey, apiSecret){
 	return {
-	 	getContract: function(){
-	 		//Http GET api.happycha.in.com/get_contracts
-	 	},
+		//if it's stupid, but it works, it aint stupid
+		//params for xhrHandler are: (url, key, secret, contractname, contractaddress, ofuser, fromuser, touser, value, note)
+	 	getContract(): xhrHandler("https://api.happycha.in/get_contract", apiKey, apiSecret, null, null, null, null, null, null, null), //still needs contract address? Check api endpoint
 
-	 	listContracts: function(){
-	 		//Http GET api.happycha.in.com/list_contracts
-	 	},
+	 	listContracts(): xhrHandler("https://api.happycha.in/list_contracts", apiKey, apiSecret, null. null, null, null, null, null, null),
 
-	 	createContract: function(contract_name) {
-	 		var contractOutput = //http POST api.happycha.in/create_contract/ <inputs api_key, api secret, contract_name>
-
-	 		console.log("Contract created. Gas used: " + contractOutput.gas_used ", contract address: " + contractOutput.contract_address);
-
-	 		contractAt(contractOutput.contract_address);
-		},
+	 	createContract(contract_name): xhrHandler("https://api.happycha.in/create_contract", apiKey, apiSecret, contract_name, null, null, null, null, null, null),
 
 		contractAt: function(contractAddress){
 			return {
-		 		balanceOf: function(ofUser){},
+		 		balanceOf(ofUser): xhrHandler("https://api.happycha.in/balance_of", apiKey, apiSecret, null, contractAddress, ofUser, null, null, null, null),
 
-			 	getTotalSupply: function(){},
+			 	getTotalSupply(): xhrHandler("https://api.happycha.in/get_total_supply", apiKey, apiSecret, null, contractAddress, null, null, null, null, null),
 
-			 	deposit: function(toUser, value){},
+			 	deposit(toUser, value): xhrHandler("https://api.happycha.in/deposit", apiKey, apiSecret, null, contractAddress, null, null, toUser, value, null),
 
-			 	withdraw: function(fromUser, value){},
+			 	withdraw(fromUser, value): xhrHandler("https://api.happycha.in/withdraw", apiKey, apiSecret, null, contractAddress, null, fromUser, null, value, null),
 
-			 	transfer: function(fromUser, toUser, value){},
+			 	transfer(fromUser, toUser, value): xhrHandler("https://api.happycha.in/transfer", apiKey, apiSecret, null, contractAddress, null, fromUser, toUser, value, null),
 
-			 	setBalance: function(ofUser, value){},
+			 	setBalance(ofUser, value): xhrHandler("https://api.happycha.in/set_balance", apiKey, apiSecret, null, contractAddress, ofUser, null, null, value, null),
 
-			 	updateNote: function(note){},
+			 	updateNote(note): xhrHandler("https://api.happycha.in/update_note", apiKey, apiSecret, null, contractAddress, null, null, null, null, note),
 
-			 	getNote: function(){}
+			 	getNote(): xhrHandler("https://api.happycha.in/get_note", apiKey, apiSecret, null, contractAddress, null, null, null, null, null)
 			}
 		}
 
  	}
 }
-
 
 module.exports = initializeApp;
 
