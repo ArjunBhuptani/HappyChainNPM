@@ -25,7 +25,7 @@ Now, you can call HappyChain methods. For example:
 
 ### .initializeApp(apiKey, apiSecret)
 
-Initializes your happychain app. It is strongly recommended that developers use initializeApp() instead of manually incluing key and secret information in their api calls.
+Initializes your happychain app. It is strongly recommended that developers use initializeApp() instead of manually including key and secret information in their api calls.
 
 Example:
 
